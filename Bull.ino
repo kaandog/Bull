@@ -10,7 +10,7 @@ int r_motor_p = 10;  //PWM control Right Motor +
 int l_motor_p = 5;   //PWM control Left Motor +
 int l_motor_n = 6;   //PWM control Left Motor -
 
-int chargingSpeed = 290;
+int chargingSpeed = 290; //290
 int turningSpeed = 290;
 
 int choice = 0;
@@ -76,34 +76,41 @@ void loop()
        analogWrite(r_motor_n, chargingSpeed);
        analogWrite(l_motor_p, chargingSpeed);  
        digitalWrite(l_motor_n, HIGH);
+       delay(1000);
       }
     }
   }
   else{ //commented out are random behaviors for the purpose of debugging
-//       if (choice == 0 || choice == 1 || choice == 2){
+       if (choice == 0 || choice == 1 || choice == 2){
          digitalWrite(r_motor_n, LOW);  //Set motor direction, 1 low, 2 high
          digitalWrite(r_motor_p, LOW);
          digitalWrite(l_motor_p, LOW);  
          digitalWrite(l_motor_n, LOW);
-//       }
-//        else if (choice == 3){
-//       digitalWrite(r_motor_n, HIGH);  //Set motor direction, 1 low, 2 high
-//       analogWrite(r_motor_p, turningSpeed);
-//       digitalWrite(l_motor_p, HIGH);  
-//       analogWrite(l_motor_n, turningSpeed);
-//        }
-//       else if (choice == 4){
-//       analogWrite(r_motor_n, turningSpeed);  //Set motor direction, 1 low, 2 high
-//       digitalWrite(r_motor_p, HIGH);
-//       analogWrite(l_motor_p, turningSpeed);  
-//       digitalWrite(l_motor_n, HIGH);
-//       }
+       }
+        else if (choice == 3){
+         digitalWrite(r_motor_n, HIGH);  //Set motor direction, 1 low, 2 high
+         analogWrite(r_motor_p, chargingSpeed);
+         analogWrite(l_motor_p, chargingSpeed);  
+         digitalWrite(l_motor_n, HIGH);
+        }
+       else if (choice == 4){
+         digitalWrite(r_motor_p, HIGH);  //Set motor direction, 1 low, 2 high
+         analogWrite(r_motor_n, chargingSpeed);
+         analogWrite(l_motor_n, chargingSpeed);  
+         digitalWrite(l_motor_p, HIGH);
+       }
+       else if (choice == 5){
+         digitalWrite(r_motor_p, HIGH);  //Set motor direction, 1 low, 2 high
+         analogWrite(r_motor_n, chargingSpeed);
+         analogWrite(l_motor_p, chargingSpeed);  
+         digitalWrite(l_motor_n, HIGH);
+       }
   } 
   delay(30);
 }
 
 void updateChoice(){
-  choice = random(0,5);
+  choice = random(0,6);
 }
   
  
